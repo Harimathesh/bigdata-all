@@ -1,34 +1,31 @@
 @echo off
-REM =========================================
-REM Run Apache HBase in Docker (Standalone)
-REM =========================================
+echo =========================================
+echo   Building Docker image: harimathesh/hbase:latest
+echo =========================================
+docker build -t harimathesh/hbase:latest .
 
-REM Container name
-set CONTAINER_NAME=hbase-docker
+if %ERRORLEVEL% neq 0 (
+    echo Build failed. Please check Dockerfile and try again.
+    pause
+    exit /b
+)
 
-REM Image name (change if you want a different one)
-set IMAGE_NAME=harisekhon/hbase
+echo =========================================
+echo   Starting HBase container: myhbase
+echo =========================================
+docker run -d --name myhbase -p 2181:2181 -p 16010:16010 harimathesh/hbase:latest
 
-REM HBase ports:
-REM 16010 -> HBase Master UI
-REM 16000 -> HBase Master RPC
-REM 16020 -> RegionServer RPC
-REM 9090  -> Thrift
-REM 9095  -> Thrift Web UI
+if %ERRORLEVEL% neq 0 (
+    echo Failed to start container. It may already exist.
+    echo Attempting to remove existing container...
+    docker rm -f myhbase
+    echo Retrying start...
+    docker run -d --name myhbase -p 2181:2181 -p 16010:16010 harimathesh/hbase:latest
+)
 
-echo Pulling latest HBase Docker image...
-docker pull %IMAGE_NAME%
-
-echo Starting HBase container...
-docker run -d ^
-  --name %CONTAINER_NAME% ^
-  -p 16010:16010 ^
-  -p 16000:16000 ^
-  -p 16020:16020 ^
-  -p 9090:9090 ^
-  -p 9095:9095 ^
-  %IMAGE_NAME%
-
-echo HBase is starting...
-echo Access HBase UI at: http://localhost:16010
-echo Use "docker logs -f %CONTAINER_NAME%" to see logs.
+echo =========================================
+echo   HBase container is running!
+echo   ZooKeeper Port: 2181
+echo   HBase Master UI: http://localhost:16010
+echo =========================================
+pause
