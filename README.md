@@ -1,52 +1,17 @@
+Prerequisites
 
-# docker-hbase
+- Docker installed on your system
+- At least 4GB RAM for smooth operation
 
-A lightweight setup to quickly launch **Apache HBase** in standalone mode using Docker.
-Includes port mappings for the HBase Web UI and APIs — ideal for **local development**, **testing**, and **experimentation** without manual installation.
+1. Download the zip file
+2. Extract them
+3. Within the path type cmd
+4. Redirected to Command Prompt.
 
----
+Commands to be given in Command Prompt:
 
-## 1. Prerequisites
+   1. docker build -t harimathesh/docker-hbase:latest .
 
-* Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
-* Ensure Docker is running:
+   2. docker run -d --name hbase-container -p 2181:2181 -p 16010:16010 -p 9870:9870 -p 8088:8088 harimathesh/docker-hbase:latest
 
-```bash
-docker version
-```
-
----
-
-## 2. Clone the Repository
-
-```bash
-git clone https://github.com/Harimathesh/docker-hbase.git
-cd docker-hbase
-```
-
----
-
-## 3. Run in Command Prompt
-
-```bash
-run-hbase.bat
-```
-
----
-
-## 4. Access HBase
-
-* **Web UI:** [http://localhost:16010](http://localhost:16010) — to access Apache HBase
-
----
-
-## 5. Stop & Remove Container
-
-```bash
-docker stop hbase-docker
-docker rm hbase-docker
-```
-
----
-
-
+It is too simple and easy to use..
