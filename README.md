@@ -1,17 +1,31 @@
-Prerequisites
+Big Data & Neo4j Docker Launcher
 
-- Docker installed on your system
-- At least 4GB RAM for smooth operation
+This project provides a Windows batch menu to easily launch common Big Data tools (HBase, Cassandra, Neo4j, Hive, Pig, Spark) inside Docker containers.
 
-1. Download the zip file
-2. Extract them
-3. Within the path type cmd
-4. Redirected to Command Prompt.
+📌 Requirements
 
-Commands to be given in Command Prompt:
+Windows 10/11
 
-   1. docker build -t harimathesh/docker-hbase:latest .
+Docker Desktop
+ installed and running
 
-   2. docker run -d --name hbase-container -p 2181:2181 -p 16010:16010 -p 9870:9870 -p 8088:8088 harimathesh/docker-hbase:latest
+Internet connection (to pull Docker images)
 
-It is too simple and easy to use..
+🚀 Usage
+
+Clone or download this project.
+
+Double-click BigDataLauncher.bat to open the menu.
+
+Choose from the menu options:
+
+====================================================
+              Big Data Analytics Menu
+====================================================
+  1) Apache HBase
+  2) Apache Cassandra
+  3) Neo4j
+  4) Apache Hive
+  5) Apache Pig / Hadoop / Spark
+  6) Exit
+====================================================
