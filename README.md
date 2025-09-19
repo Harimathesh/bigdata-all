@@ -20,3 +20,15 @@ Username:neo4j
 
 Password:test12345
 
+**WordCount and Student Marks Analysis (MapReduce)**
+
+**Execution**
+
+python3 student_marks.py mapper < marks.txt
+
+python3 student_marks.py reducer < <(python3 student_marks.py mapper < marks.txt)
+
+
+
+
+
